@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.js}"></script>
+    <title>News Article</title>
+</head>
+<body id="news_article">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <h1 th:text="${news.title}"></h1>
+
+    <article>
+        <p>Date of event: <span th:text="${news.date}"></span></p>
+        <img th:src="@{/api/v1/news/{newsId}/image(newsId=${news.id})}" class="full-image"
+             th:alt="${news.imageAlt}">
+        <p th:text="${news.description}"></p>
+    </article>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
+
+
+
+

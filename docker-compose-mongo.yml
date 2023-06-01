@@ -1,0 +1,40 @@
+version: '3.3'
+services:
+  mongo:
+    ports:
+      - '27017:27017'
+    container_name: mongo
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_DATABASE=database
+      - MONGO_INITDB_USERNAME=mongoadmin
+      - MONGO_INITDB_PASSWORD=secret
+    image: mongo
+
+  mongo-express:
+    ports:
+      - '8081:8081'
+    container_name: mongo-express
+    restart: always
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=mongoadmin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
+      - ME_CONFIG_MONGODB_SERVER=mongo
+    image: mongo-express
+    depends_on:
+      - mongo
+
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+    container_name: redis
+    restart: always
+    logging:
+      options:
+        max-size: 1g

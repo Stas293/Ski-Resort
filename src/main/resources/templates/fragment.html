@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<div th:fragment="header">
+    <nav>
+        <ul id="menu">
+            <li><a th:href="@{/}">My Ski Resort</a></li>
+            <li th:class="dropdown" sec:authorize="hasRole('ADMIN')"><a th:href="@{#}" th:text="#{subhead.admin}"></a>
+                <ul th:class="dropdown-content">
+                    <li><a th:href="@{/resorts/admin}" th:text="#{subhead.admin.resort}"></a></li>
+                    <li><a th:href="@{/news/admin}" th:text="#{subhead.admin.news}"></a></li>
+                    <li><a th:href="@{/events/admin}" th:text="#{subhead.admin.events}"></a></li>
+                    <li><a th:href="@{/city/admin}" th:text="#{subhead.admin.city}"></a></li>
+                    <li><a th:href="@{/country/admin}" th:text="#{subhead.admin.country}"></a></li>
+                    <li><a th:href="@{/user/admin}" th:text="#{subhead.admin.users}"></a></li>
+                </ul>
+            </li>
+            <li th:class="dropdown"><a th:href="@{#}" th:text="#{subhead.resorts}"></a>
+                <ul th:class="dropdown-content">
+                    <li><a th:href="@{/resorts/north_america}" th:text="#{subhead.resorts.NA}"></a></li>
+                    <li><a th:href="@{/resorts/south_america}" th:text="#{subhead.resorts.SA}"></a></li>
+                    <li><a th:href="@{/resorts/europe}" th:text="#{subhead.resorts.EU}"></a></li>
+                    <li><a th:href="@{/resorts/other_world}" th:text="#{subhead.resorts.OW}"></a></li>
+                </ul>
+            </li>
+            <li><a th:href="@{/news}" th:text="#{subhead.news}"></a></li>
+            <li><a th:href="@{/events}" th:text="#{subhead.events}"></a></li>
+            <li><a th:href="@{/contact_us}" th:text="#{subhead.contact_us}"></a></li>
+            <li id="right-sided">
+                <ul>
+                    <th:block th:insert="~{fragment :: locale}"></th:block>
+                    <th:block sec:authorize="isAnonymous()">
+                        <li><a th:href="@{/login}" th:text="#{subhead.login}"></a></li>
+                        <li><a th:href="@{/registration}" th:text="#{subhead.signup}"></a></li>
+                    </th:block>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li><a th:href="@{/user/personal}" th:text="${#authentication.principal.fullName}"/></li>
+                        <li>
+                            <form th:action="@{/logout}" th:method="POST">
+                                <button type="submit" th:text="#{subhead.logout}"/>
+                            </form>
+                        </li>
+                    </th:block>
+                </ul>
+            </li>
+            <li class="icon"><a onclick="changeResponsive()">&#9776;</a></li>
+        </ul>
+    </nav>
+</div>
+<li class="dropdown" th:fragment="locale">
+    <a th:href="@{#}" th:text="#{app.lang}">Language</a>
+    <ul class="dropdown-content">
+        <li>
+            <a class="dropdown-item" th:href="@{?lang=en}" th:text="#{app.lang.english}">
+                EN
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" th:href="@{?lang=uk}" th:text="#{app.lang.ukrainian}">
+                UK
+            </a>
+        </li>
+    </ul>
+</li>
+<div class="pagination" th:fragment="pagination">
+    <div id="page-navigation" class="pagination-wrapper">
+    </div>
+</div>
+
+<div class="search-form" th:fragment="search-form">
+    <div class="form-group">
+        <input id="search" type="text" placeholder="Search">
+        <input id="size" type="number" min="2" max="8" value="5">
+        <input name="sorting" class="hidden" type="radio" id="asc" value="ASC" checked><label for="asc">
+        ASC
+    </label>
+        <input name="sorting" class="hidden" type="radio" id="desc" value="DESC"><label for="desc">
+        DESC
+    </label>
+    </div>
+</div>
+</body>
+</html>

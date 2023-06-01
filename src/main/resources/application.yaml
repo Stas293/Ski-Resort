@@ -1,0 +1,91 @@
+spring:
+  mvc:
+    format:
+      date: iso
+    hiddenmethod:
+      filter:
+        enabled: true
+  datasource:
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        use_reflection_optimizer: true
+        generate_statistics: true
+        cache:
+          use_query_cache: true
+          use_second_level_cache: true
+          factory_class: org.redisson.hibernate.RedissonRegionFactory
+          region:
+              prefix: ski-resort
+          redisson:
+            fallback: true
+            config: redisson/redisson-dev.yaml
+            ski-resort:
+              expiration:
+                time_to_live: 600000
+                max_idle_time: 300000
+    open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_SECRET}
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            scope:
+              - openid
+              - email
+              - profile
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_SECRET}
+            redirect-uri: http://localhost:8080/login/oauth2/code/github
+            scope:
+              - user:email
+              - read:user
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: ${MONGODB_URI}
+  cache:
+    redis:
+      enable-statistics: true
+      cache-null-values: false
+      use-key-prefix: true
+      time-to-live: 3600000
+    type: redis
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+app:
+  image:
+    bucket: ${BUCKET_NAME}
+logging:
+  level:
+    root: INFO
+    sql: trace
+server:
+  shutdown: graceful

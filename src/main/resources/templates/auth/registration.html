@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/signup-photo.js}"></script>
+    <title>Sign Up</title>
+</head>
+<body id="registration">
+<header th:insert="~{fragment :: header}"></header>
+<main id="sign-up">
+    <div class="container">
+        <form th:action="@{/registration}" enctype="multipart/form-data" th:method="POST" th:object="${user}">
+            <div class="row">
+                <h1>Sign up</h1>
+                <div class="vl">
+                    <span class="vl-innertext">or</span>
+                </div>
+
+                <div class="col">
+                    <a class="google btn" href="http://localhost:8080/oauth2/authorization/google">
+                        <i class="fa fa-google fa-fw"></i> Sign up with Google
+                    </a>
+                    <a class="github btn" href="http://localhost:8080/oauth2/authorization/github">
+                        <i class="fa fa-github fa-fw"></i> Sign up with GitHub
+                    </a>
+                </div>
+
+                <div class="col">
+                    <label>
+                        <input type="text" name="username" required placeholder="Login" th:value="*{username}"/>
+                    </label>
+                    <label>
+                        <input type="email" name="email" required placeholder="E-mail" th:value="*{email}"/>
+                    </label>
+                    <label>
+                        <input type="password" name="password" required placeholder="Password" th:value="*{password}"/>
+                    </label>
+                    <label>
+                        <input type="password" name="confirmPassword" required placeholder="Retype password" th:value="*{confirmPassword}"/>
+                    </label>
+                    <label>
+                        <input type="text" name="firstName" required placeholder="First name" th:value="*{firstName}"/>
+                    </label>
+                    <label>
+                        <input type="text" name="lastName" required placeholder="Last name" th:value="*{lastName}"/>
+                    </label>
+                    <input class="form-control" id="image" name="image" onchange="previewImage()"
+                           onclick="removePicture()" type="file" value="Image">
+                    <img alt="Preview Image" id="preview" src="#" class="hide">
+
+                    <button type="submit" th:text="#{newUserRegistration.label.submit}">Sign up
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
+

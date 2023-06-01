@@ -1,0 +1,686 @@
+@back-color: #38444d;
+@import "font-awesome-4.7.0/less/font-awesome.less";
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+  position: relative;
+  min-height: calc(100vh - 70px);
+
+  &::after {
+    content: '';
+    display: block;
+    height: 50px;
+  }
+}
+
+#resort_article, #event_article, #news_article{
+  main{
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+main {
+  margin: 70px 50px 50px 50px;
+
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  padding: 30px;
+  .container, .bottom-container {
+    * {
+      box-sizing: border-box
+    }
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .container {
+    position: relative;
+    border-radius: 5px;
+    padding: 20px 0 30px 0;
+  }
+}
+
+.form-control {
+  border: none;
+  color: black;
+  box-shadow: none;
+}
+
+.form-inline .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.form-row > .col {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.head {
+  text-align: center;
+  padding: 10px;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: @back-color;
+  }
+
+  .icon {
+    display: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  li {
+    float: left;
+
+    a {
+      display: inline-block;
+      color: #ffffff;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      height: 20px;
+    }
+
+    button {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 16px;
+      background-color: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 1em;
+    }
+
+    a:hover,
+    button:hover,
+    .dropdown:hover {
+      background-color: red;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: inline-block;
+    }
+  }
+
+  .dropdown-content {
+    visibility: hidden;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 100px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transform: translateX(-1em);
+    opacity: 0;
+    transition: all 0.2s ease;
+
+    a {
+      color: #000000;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    a:hover {
+      background-color: #cecece;
+    }
+  }
+
+  .dropdown:hover {
+    .dropdown-content {
+      visibility: visible;
+      max-height: none;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  #right-sided {
+    float: right;
+  }
+
+  @media screen and (max-width: 960px) {
+    li:not(:first-child, :last-child) {
+      display: none;
+    }
+
+    .icon {
+      float: right;
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    .responsive {
+      position: relative;
+    }
+
+    .responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .responsive {
+      &:first-child {
+        width: auto;
+      }
+
+      li {
+        float: none;
+        display: block;
+        text-align: left;
+
+        a {
+          width: 100%;
+          text-align: left;
+        }
+      }
+
+      .dropdown-content {
+        position: relative;
+        max-height: 0;
+        transform: translateY(-1em);
+      }
+    }
+
+    #right-sided {
+      width: 100%;
+    }
+  }
+}
+
+section {
+  h2 {
+    text-align: center;
+  }
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card {
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 50%;
+  }
+
+  h5 {
+    text-align: center;
+    margin: 10px 0 10px 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  p{
+  margin: 0;
+  }
+}
+
+.content-wrapper {
+  padding-bottom: 50px;
+}
+
+footer {
+  p {
+    margin: 0;
+  }
+
+  background-color: @back-color;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  padding: 10px 0 10px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#contact-us-list {
+  list-style-type: none;
+
+  li {
+    margin: 10px;
+  }
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+#north_america {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#south_america {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#contact_us {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#europe {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#event_article {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#events {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#index {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#news {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#news_article {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#other_world {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#resort_article {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#login{
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#registration {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#personal {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#edit {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#dashboard_country {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#dashboard_city {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#dashboard_news {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#dashboard_event {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#dashboard_resort {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#users_management{
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#edit_user_management{
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#reset-password{
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+#user-reset {
+  background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?fit=crop&fm=jpg&h=1900&q=80&w=2400');
+}
+
+.hide {
+  display:none;
+}
+
+.default-image {
+  width: 200px;
+}
+
+.full-image {
+  width: 40%;
+}
+
+.fb {
+  background-color: #3200cb;
+  color: #ffffff;
+}
+
+.twitter {
+  background-color: #1e90ff;
+  color: #ffffff;
+}
+
+.google {
+  background-color: #FF0000FF;
+  color: #ffffff;
+}
+
+.github {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.col {
+  float: left;
+  width: 50%;
+  padding: 0 50px;
+  margin: 6px auto auto;
+
+  .hide-md-lg {
+    display: none;
+  }
+
+  input[type=submit], button[type=submit] {
+    background-color: #00008BFF;
+    color: #ffffff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0000FFFF;
+    }
+  }
+
+  input, button {
+    width: 100%;
+    padding: 12px;
+    border: solid @back-color 1px;
+    border-radius: 4px;
+    margin: 15px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: center;
+  label {
+    font-weight: bold;
+  }
+
+  #search {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    border-radius: 3px;
+  }
+}
+
+.comments-table{
+  margin: 10px;
+  padding: 0;
+  width: 100%;
+  border-radius: 5px;
+  border-collapse: collapse;
+  background-color: #f2f2f2;
+
+  td, th {
+    text-align: center;
+    height: 40px;
+    padding: 10px;
+    border-bottom: 1px solid #000000;
+  }
+
+  #message-td{
+    text-align: left;
+  }
+}
+
+[for="asc"], [for="desc"] {
+  background: @back-color;
+  color: #000000;
+  border-radius: 24px;
+  text-align: center;
+  padding: 5px 10px;
+  margin: 0 5px;
+  opacity: 0.85;
+  transition: background-color .3s;
+}
+
+[for="desc"]:hover,
+[for="asc"]:hover {
+  background-color: #ddd;
+}
+
+#asc:checked ~ [for="asc"],
+#desc:checked ~ [for="desc"] {
+  background-color: #1e90ff;
+  color: #ffffff;
+}
+
+.row {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+#sign-up {
+  .vl {
+    height: 83%;
+  }
+}
+
+.vl {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border: 2px solid #ddd;
+  height: 66%;
+
+  .vl-innertext {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 8px 10px;
+  }
+}
+
+.bottom-container {
+  text-align: center;
+  background-color: #cb5d0d;
+}
+
+.bottom-container :hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 960px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .vl {
+    display: none;
+  }
+
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+
+  main {
+      padding: 10px;
+      margin: 70px 20px 20px 20px;
+  }
+
+  #resort_article, #event_article, #news_article {
+    main {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .full-image{
+    width: 200px;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  user-select: none;
+
+  a {
+    color: #000000;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+
+  .pagination-wrapper {
+    background-color: @back-color;
+    border-radius: 5px;
+    opacity: 0.85;
+  }
+
+  a.active {
+    background-color: #1e90ff;
+    color: #ffffff;
+  }
+
+  a:hover:not(.active) {
+    background-color: #ddd;
+  }
+}
+
+.review-container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+
+  input[type=submit], button[type=submit], a {
+    background-color: #00008BFF;
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #0000FFFF;
+    }
+  }
+}

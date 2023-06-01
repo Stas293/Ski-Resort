@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <title>Log in</title>
+</head>
+<body id="login">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="container">
+        <form th:action="@{/login}" th:method="POST">
+            <div class="row">
+                <h1>Login</h1>
+                <div class="vl">
+                    <span class="vl-innertext">or</span>
+                </div>
+
+                <div class="col">
+                    <a class="google btn" href="http://localhost:8080/oauth2/authorization/google">
+                        <i class="fa fa-google fa-fw"></i> Login with Google
+                    </a>
+                    <a class="github btn" href="http://localhost:8080/oauth2/authorization/github">
+                        <i class="fa fa-github fa-fw"></i> Login with GitHub
+                    </a>
+                </div>
+
+                <div class="col">
+                    <label>
+                        <input name="username" placeholder="Username" required type="text">
+                    </label>
+                    <label>
+                        <input name="password" placeholder="Password" required type="password">
+                    </label>
+                    <input type="submit" value="Login">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="bottom-container">
+                <a class="btn" th:href="@{/reset}">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
+

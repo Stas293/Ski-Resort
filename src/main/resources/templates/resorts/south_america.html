@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/pageable-articles.js}"></script>
+    <script th:src="@{/js/pagination.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.js}"></script>
+    <title>South America Resorts</title>
+</head>
+<body id="south_america">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="head">
+        <h1>South America Resorts</h1>
+        <p>
+            South America is home to some of the highest ski
+            resorts in the world, such as Portillo and Valle
+            Nevado in Chile, and Las Leñas in Argentina.
+            These resorts offer skiers and snowboarders a
+            unique experience, with breathtaking mountain
+            views and powder snow. The ski season in South
+            America typically runs from June to September.
+        </p>
+        <th:block th:insert="~{fragment :: search-form}"></th:block>
+    </div>
+
+    <section>
+        <h2>Ski Resorts</h2>
+        <div class="card-container" id="cards">
+
+        </div>
+    </section>
+    <th:block th:insert="~{fragment :: pagination}"></th:block>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
+
+
+
+

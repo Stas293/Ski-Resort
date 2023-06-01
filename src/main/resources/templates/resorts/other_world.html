@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/pageable-articles.js}"></script>
+    <script th:src="@{/js/pagination.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.js}"></script>
+    <title>Other World Resorts</title>
+</head>
+<body id="other_world">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="head">
+        <h1>Other World Resorts</h1>
+        <p>
+            There are many ski resorts around
+            the world that are outside of North
+            America, South America, and Europe.
+            These ski resorts are found in places such
+            as Japan, New Zealand, and Australia. Ski
+            resorts in Japan, like Niseko, are known for
+            their incredible snow quality, while ski resorts
+            in New Zealand, like Queenstown, offer a wide range
+            of winter sports and activities. In Australia, ski resorts
+            like Perisher and Thredbo provide a unique skiing experience
+            in the southern hemisphere.
+        </p>
+        <th:block th:insert="~{fragment :: search-form}"></th:block>
+    </div>
+
+    <section>
+        <h2>Ski Resorts</h2>
+        <div class="card-container" id="cards">
+
+        </div>
+    </section>
+    <th:block th:insert="~{fragment :: pagination}"></th:block>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
+
+
+
+

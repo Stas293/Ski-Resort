@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <title>Personal</title>
+</head>
+<body id="personal">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="head">
+        <h1>Your account</h1>
+    </div>
+    <section>
+        <div>
+            <div class="review-container" th:object="${user}">
+                <th:block th:if="${user.image}">
+                    <img th:src="@{/api/v1/user/{id}/image(id=${user.id})}" alt="User image">
+                </th:block>
+                <h2>Account information</h2>
+                <p>Login: <span th:text="${user.username}"></span></p>
+                <p>Name: <span th:text="${user.firstName}"></span></p>
+                <p>Surname: <span th:text="${user.lastName}"></span></p>
+                <p>Email: <span th:text="${user.email}"> </span></p>
+                <a href="/user/edit">Edit</a>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

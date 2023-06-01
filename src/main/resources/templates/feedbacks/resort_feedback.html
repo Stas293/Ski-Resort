@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<section>
+        <h2>Your review</h2>
+        <div class="review-container">
+            <form th:action="@{/feedbacks/resort}" th:method="POST" th:object="${feedback}">
+                <div>
+                    <label>
+                        <span>Rating:</span>
+                        <select class="" th:field="*{rating}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" placeholder="Write something..." rows="4"
+                              th:field="*{message}"></textarea>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+</section>
+</body>
+</html>

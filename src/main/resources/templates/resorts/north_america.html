@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/pageable-articles.js}"></script>
+    <script th:src="@{/js/pagination.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.js}"></script>
+    <title>North America Resorts</title>
+</head>
+<body id="north_america">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="head">
+        <h1>North America Resort</h1>
+        <p>
+            Ski resorts in North America are renowned for
+            their stunning mountain scenery, diverse terrain,
+            and top-notch facilities. Some of the most popular
+            ski resorts in the region include Whistler Blackcomb
+            in Canada, Aspen Snowmass in Colorado, and Jackson Hole
+            in Wyoming. Many ski resorts in North America offer a wide
+            range of winter sports and activities, such as snowboarding,
+            cross-country skiing, ice-skating, and more.
+        </p>
+        <th:block th:insert="~{fragment :: search-form}"></th:block>
+    </div>
+    <section>
+        <h2>Ski Resorts</h2>
+        <div class="card-container" id="cards">
+
+        </div>
+    </section>
+    <th:block th:insert="~{fragment :: pagination}"></th:block>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
+
+
+
+

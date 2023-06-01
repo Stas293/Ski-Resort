@@ -1,0 +1,107 @@
+ALTER TABLE user_roles
+DROP CONSTRAINT fk_userol_on_role;
+
+ALTER TABLE user_roles
+ADD CONSTRAINT fk_userol_on_role
+FOREIGN KEY (role_id)
+REFERENCES role (id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE user_roles
+DROP CONSTRAINT fk_userol_on_user;
+
+ALTER TABLE user_roles
+ADD CONSTRAINT fk_userol_on_user
+FOREIGN KEY (user_id)
+REFERENCES user_list (id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE user_list
+ALTER COLUMN email SET NOT NULL;
+
+ALTER TABLE user_list
+ALTER COLUMN password SET NOT NULL;
+
+ALTER TABLE user_list
+ALTER COLUMN firstname SET NOT NULL;
+
+ALTER TABLE user_list
+ALTER COLUMN lastname SET NOT NULL;
+
+ALTER TABLE user_list
+ADD CONSTRAINT uk_image UNIQUE (image);
+
+ALTER TABLE resort
+DROP CONSTRAINT fk_resort_on_continent;
+
+ALTER TABLE resort
+ADD CONSTRAINT fk_resort_on_continent
+FOREIGN KEY (continent_id)
+REFERENCES continent (id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE feedback
+DROP CONSTRAINT fk_feedback_on_user;
+
+ALTER TABLE feedback
+ADD CONSTRAINT fk_feedback_on_user
+FOREIGN KEY (user_id)
+REFERENCES user_list (id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE feedback
+DROP CONSTRAINT fk_feedback_on_resort;
+
+ALTER TABLE feedback
+ADD CONSTRAINT fk_feedback_on_resort
+FOREIGN KEY (resort_id)
+REFERENCES resort (id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE feedback
+DROP CONSTRAINT fk_feedback_on_event;
+
+ALTER TABLE feedback
+ADD CONSTRAINT fk_feedback_on_event
+FOREIGN KEY (event_id)
+REFERENCES event (id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE feedback
+ALTER COLUMN feedback_type SET NOT NULL;
+
+ALTER TABLE feedback
+ALTER COLUMN message SET NOT NULL;
+
+ALTER TABLE feedback
+ALTER COLUMN rating SET NOT NULL;
+
+ALTER TABLE feedback
+ALTER COLUMN date_created SET NOT NULL;
+
+ALTER TABLE event
+ALTER COLUMN title SET NOT NULL;
+
+ALTER TABLE event
+ALTER COLUMN description SET NOT NULL;
+
+ALTER TABLE event
+ALTER COLUMN date SET NOT NULL;
+
+ALTER TABLE news
+ALTER COLUMN title SET NOT NULL;
+
+ALTER TABLE news
+ALTER COLUMN description SET NOT NULL;
+
+ALTER TABLE news
+ALTER COLUMN date SET NOT NULL;
+
+ALTER TABLE news
+ALTER COLUMN image SET NOT NULL;

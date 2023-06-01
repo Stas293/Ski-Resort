@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" th:rel="stylesheet"/>
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.js}"></script>
+    <script th:href="@{/js/script.js}"></script>
+    <script th:src="@{/js/pageable-feedbacks.js}"></script>
+    <script th:src="@{/js/pagination.js}"></script>
+    <title>Event Article</title>
+</head>
+<body id="event_article">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <input type="hidden" id="id" th:value="${event.id}">
+    <h1 th:text="${event.title}"></h1>
+    <article>
+        <img th:src="@{/api/v1/events/{eventId}/image(eventId=${event.id})}" class="full-image"
+             th:alt="${event.imageAlt}">
+        <p th:text="${event.description}"></p>
+        <p>Published on <span th:text="${#temporals.format(event.date, 'yyyy-MM-dd HH:mm')}"></span></p>
+    </article>
+
+    <section>
+        <div sec:authorize="isAnonymous()">
+            <p>If you want to write a comment, please <a th:href="@{/login}">log in!</a></p>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <h2>Your review</h2>
+            <div class="review-container">
+                <form th:action="@{/feedbacks/event}" th:method="POST" th:object="${feedback}">
+                    <input type="hidden" th:name="eventId" th:value="${event.id}">
+                    <div>
+                        <label>
+                            <span>Rating:</span>
+                            <select class="" th:field="*{rating}">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" placeholder="Write something..." rows="4"
+                                  th:field="*{message}"></textarea>
+                    </div>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Comments</h2>
+        <th:block th:insert="~{fragment :: search-form}"></th:block>
+        <table class="comments-table">
+            <thead>
+            <tr>
+                <th scope="col">
+                    Full name
+                </th>
+                <th scope="col">
+                    Message
+                </th>
+                <th scope="col">
+                    Date created
+                </th>
+                <th scope="col">
+                    Rating
+                </th>
+            </tr>
+            </thead>
+            <tbody id="cards">
+            </tbody>
+        </table>
+    </section>
+    <th:block th:insert="~{fragment :: pagination}"></th:block>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
+
+
+
+

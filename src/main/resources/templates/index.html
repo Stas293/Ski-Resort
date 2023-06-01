@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{css/style.css}" rel="stylesheet">
+    <script th:src="@{js/script.js}"></script>
+    <title>Personal</title>
+</head>
+
+<body id="personal">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="head">
+        <h1>Welcome to My Ski Resort</h1>
+        <p>
+            Everything you need for planning a ski trip.
+            Ski resorts, snow forecasts, resort reviews,
+            and more. We are the best ski resort in the world.
+            We have fantastic snow, great facilities and a friendly
+            atmosphere. Come and join us for a great skiing experience.
+            We have a range of ski packages to suit all budgets.
+            We also have a range of ski lessons for all ages and
+            abilities. We look forward to seeing you soon
+        </p>
+    </div>
+    <section>
+        <section>
+            <h2>Ski Resorts</h2>
+            <div class="card-container">
+            <th:block th:each="resort :${resorts}">
+                <article class="card">
+                    <a th:href="@{/resorts/{resortId}(resortId=${resort.id})}">
+                        <img th:src="@{/api/v1/resorts/{resortId}/image(resortId=${resort.id})}" class="default-image"
+                             th:alt="${resort.imageAlt}">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${resort.title}"></h5>
+                            <p class="card-text  line-clamp" th:text="${resort.description}"></p>
+                        </div>
+                    </a>
+                </article>
+            </th:block>
+            </div>
+        </section>
+
+        <section>
+            <h2>Latest News</h2>
+            <div class="card-container">
+                <th:block th:each="nws :${news}">
+                    <article class="card">
+                        <a th:href="@{/news/{nwsId}(nwsId=${nws.id()})}">
+                            <img th:src="@{/api/v1/news/{newsId}/image(newsId=${nws.id})}" class="default-image"
+                                 th:alt="${nws.imageAlt}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${nws.title}"></h5>
+                                <p class="card-text line-clamp" th:text="${nws.description}"></p>
+                            </div>
+                        </a>
+                    </article>
+                </th:block>
+            </div>
+        </section>
+    </section>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+
+</html>

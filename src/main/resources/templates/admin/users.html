@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{https://code.jquery.com/jquery-3.6.0.js}"></script>
+    <script th:src="@{/js/pageable-users.js}"></script>
+    <script th:src="@{/js/pagination.js}"></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <title>Dashboard</title>
+</head>
+<body id="users_management">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="head">
+        <h1>Manage users</h1>
+    </div>
+
+    <section>
+        <h2>Users</h2>
+        <th:block th:insert="~{fragment :: search-form}"></th:block>
+        <table class="comments-table">
+            <thead>
+            <tr>
+                <th>Login</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Enabled</th>
+            </tr>
+            </thead>
+            <tbody id="cards">
+
+            </tbody>
+        </table>
+    </section>
+
+    <th:block th:insert="~{fragment :: pagination}"></th:block>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>

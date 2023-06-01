@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <script th:src="@{/js/script.js}"></script>
+    <title>Edit</title>
+</head>
+<body id="edit">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <div class="head">
+        <h1>Edit account</h1>
+    </div>
+    <section>
+        <div class="review-container">
+            <form th:action="@{/user/edit}" th:method="PUT" th:object="${user}">
+                <input type="hidden" th:field="*{id}">
+
+                <label for="firstName">First Name</label>
+                <input type="text" th:field="*{firstName}" id="firstName" required>
+
+                <label for="lastName">Surname</label>
+                <input type="text" th:field="*{lastName}" id="lastName" required>
+
+                <label for="email">Email</label>
+                <input type="email" th:field="*{email}" id="email" required>
+
+                <label for="oldPassword">Enter old password</label>
+                <input type="password" th:field="*{oldPassword}" id="oldPassword" required>
+
+                <label for="password">New password</label>
+                <input type="password" th:field="*{password}" id="password" required>
+
+                <label for="confirmPassword">Confirm new password</label>
+                <input type="password" th:field="*{confirmPassword}" id="confirmPassword" required>
+
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{css/style.css}" rel="stylesheet">
+    <script th:src="@{js/script.js}"></script>
+    <title>Contact Us</title>
+</head>
+<body id="contact_us">
+<header th:insert="~{fragment :: header}"></header>
+<main>
+    <h1>You can contact us via: </h1>
+    <ul id="contact-us-list">
+        <li>Phone: 123-456-7890</li>
+        <li>Email: <a href="mailto:myskiresort@gmail.com">myskiresort@gmail.com</a></li>
+    </ul>
+    <section>
+        <h2>Or fill out the form below</h2>
+        <div class="review-container">
+            <form th:action="@{/contact_us}" th:method="POST" th:object="${contactUs}">
+                <div class="">
+                    <label th:for="name">Full name:</label>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <input type="text" th:id="name" name="name" placeholder="Name" th:value="${#authentication.principal.fullName}" required th:field="*{fullName}">
+                    </th:block>
+                    <th:block sec:authorize="isAnonymous()">
+                        <input type="text" th:id="name" name="name" placeholder="Name" required th:field="*{fullName}">
+                    </th:block>
+                </div>
+                <div class="">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required th:field="*{email}">
+                </div>
+                <div class="">
+                    <label for="phone">Phone number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone number" th:field="*{phoneNumber}">
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" placeholder="Write something..." rows="4" required th:field="*{message}"></textarea>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 My Ski Resort. All Rights Reserved.</p>
+    </footer>
+</main>
+</body>
+</html>
